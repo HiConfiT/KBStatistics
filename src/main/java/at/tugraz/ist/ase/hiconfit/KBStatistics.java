@@ -31,7 +31,7 @@ import java.util.Objects;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * The class that calculates the statistics of knowledge bases.
+ * The class calculates the statistics of given knowledge bases.
  * Supports the following knowledge bases:
  * - Feature Models from SPLOT, FeatureIDE, Glencoe, and other tools
  * - PC and Renault from <a href="https://www.itu.dk/research/cla/externals/clib/">https://www.itu.dk/research/cla/externals/clib/</a>
@@ -120,15 +120,19 @@ public class KBStatistics {
         if (options.getKb() != null) {
             for (String nameKb : options.getKb()) {
                 KB kb = null;
-                if (nameKb.equals("PC")) { // if pc, then calculate the statistics of pc
-                    System.out.println("\nCalculating statistics for PC...");
-                    kb = new PCKB(false);
-                } else if (nameKb.equals("Renault")) { // if Renault, then calculate the statistics of Renault
-                    System.out.println("\nCalculating statistics for Renault...");
-                    kb = new RenaultKB(false);
-                } else if (nameKb.equals("Camera")) { // if Camera, then calculate the statistics of Camera
-                    System.out.println("\nCalculating statistics for Camera...");
-                    kb = new CameraKB(false);
+                switch (nameKb) {
+                    case "PC" -> {  // if pc, then calculate the statistics of pc
+                        System.out.println("\nCalculating statistics for PC...");
+                        kb = new PCKB(false);
+                    }
+                    case "Renault" -> {  // if Renault, then calculate the statistics of Renault
+                        System.out.println("\nCalculating statistics for Renault...");
+                        kb = new RenaultKB(false);
+                    }
+                    case "Camera" -> {  // if Camera, then calculate the statistics of Camera
+                        System.out.println("\nCalculating statistics for Camera...");
+                        kb = new CameraKB(false);
+                    }
                 }
 
                 checkArgument(kb != null, "The knowledge base is not supported.");
@@ -176,15 +180,14 @@ public class KBStatistics {
     private void saveStatistics(BufferedWriter writer, int counter, KB kb) throws IOException {
         boolean consistent = kb.getModelKB().getSolver().solve();
 
-        // TODO - use writer.newLine();
-        writer.write(counter + "\n");
-        writer.write("Name: " + kb.getName() + "\n");
-        writer.write("Source: " + kb.getSource() + "\n");
-        writer.write("#variables: " + kb.getNumVariables() + "\n");
-        writer.write("#constraints: " + kb.getNumConstraints() + "\n");
-        writer.write("#Choco variables: " + kb.getNumChocoVars() + "\n");
-        writer.write("#Choco constraints: " + kb.getNumChocoConstraints() + "\n");
-        writer.write("Consistency: " + consistent + "\n");
+        writer.write(String.valueOf(counter)); writer.newLine();
+        writer.write("Name: " + kb.getName()); writer.newLine();
+        writer.write("Source: " + kb.getSource()); writer.newLine();
+        writer.write("#variables: " + kb.getNumVariables()); writer.newLine();
+        writer.write("#constraints: " + kb.getNumConstraints()); writer.newLine();
+        writer.write("#Choco variables: " + kb.getNumChocoVars()); writer.newLine();
+        writer.write("#Choco constraints: " + kb.getNumChocoConstraints()); writer.newLine();
+        writer.write("Consistency: " + consistent); writer.newLine();
 
         writer.flush();
     }
@@ -196,17 +199,17 @@ public class KBStatistics {
 
         saveStatistics(writer, counter, kb);
 
-        writer.write("\n");
-        writer.write("CTC ratio: " + ctc + "\n");
-        writer.write("#features: " + fm.getNumOfFeatures() + "\n");
-        writer.write("#relationships: " + fm.getNumOfRelationships() + "\n");
-        writer.write("#constraints: " + fm.getNumOfConstraints() + "\n");
-        writer.write("#MANDATORY: " + fm.getNumOfRelationships(MandatoryRelationship.class) + "\n");
-        writer.write("#OPTIONAL: " + fm.getNumOfRelationships(OptionalRelationship.class) + "\n");
-        writer.write("#ALTERNATIVE: " + fm.getNumOfRelationships(AlternativeRelationship.class) + "\n");
-        writer.write("#OR: " + fm.getNumOfRelationships(OrRelationship.class) + "\n");
-        writer.write("#REQUIRES: " + fm.getNumOfRequires() + "\n");
-        writer.write("#EXCLUDES: " + fm.getNumOfExcludes() + "\n");
+        writer.newLine();
+        writer.write("CTC ratio: " + ctc); writer.newLine();
+        writer.write("#features: " + fm.getNumOfFeatures()); writer.newLine();
+        writer.write("#relationships: " + fm.getNumOfRelationships()); writer.newLine();
+        writer.write("#constraints: " + fm.getNumOfConstraints()); writer.newLine();
+        writer.write("#MANDATORY: " + fm.getNumOfRelationships(MandatoryRelationship.class)); writer.newLine();
+        writer.write("#OPTIONAL: " + fm.getNumOfRelationships(OptionalRelationship.class)); writer.newLine();
+        writer.write("#ALTERNATIVE: " + fm.getNumOfRelationships(AlternativeRelationship.class)); writer.newLine();
+        writer.write("#OR: " + fm.getNumOfRelationships(OrRelationship.class)); writer.newLine();
+        writer.write("#REQUIRES: " + fm.getNumOfRequires()); writer.newLine();
+        writer.write("#EXCLUDES: " + fm.getNumOfExcludes()); writer.newLine();
 
         writer.flush();
     }
