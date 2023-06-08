@@ -1,8 +1,8 @@
 # KBStatistics - A Knowledge Base Statistics Tool
 
-| *version*                                                                         | *status* |
-|-----------------------------------------------------------------------------------|----------|
-| [1.3.1](https://github.com/manleviet/CA-CDR-V2/releases/tag/kbstatistics-v1.3.1)  | latest   |
+| *version*                                                             | *status* |
+|-----------------------------------------------------------------------|----------|
+| [1.3.1](https://github.com/HiConfiT/KBStatistics/releases/tag/v1.3.1) | latest   |
 
 `kbstatistics` is a Java `jar` tool that calculates statistics of given knowledge bases.
 
@@ -38,9 +38,9 @@ The tool analysis and prints out the following statistics of given knowledge bas
 
 ## Usage
 
-**Download**: [Latest (v1.3.1)]{: .label .label-green }
+**Download**: [Latest (v1.3.1)]
 
-**Requirements**: [Latest Java]{: .label .label-green }
+**Requirements**: [Latest Java]
 
 **Syntax**:
 ```bash
