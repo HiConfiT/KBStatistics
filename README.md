@@ -22,6 +22,7 @@ The tool analysis and prints out the following statistics of given knowledge bas
 2. **Statistics for feature model**
 - The CTC ratio
 - The number of features
+- The number of leaf features
 - The number of relationships
 - The number of cross-tree constraints
 - The number of MANDATORY relationships

@@ -142,6 +142,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.4
                     #features: 12
+                    #leaf features: 9
                     #relationships: 6
                     #constraints: 4
                     #MANDATORY: 2
@@ -149,6 +150,48 @@ class KBStatisticsTest {
                     #ALTERNATIVE: 1
                     #OR: 1
                     #REQUIRES: 2
+                    #EXCLUDES: 1""";
+        assertEquals(expected, content.get());
+    }
+
+    @Test
+    void testOneFM_2() {
+        String[] args = new String[]{"-fm", "./src/test/resources/fms/bamboobike.fm4conf"};
+
+        KBStatistics_CmdLineOptions options = new KBStatistics_CmdLineOptions(null, programTitle, null, usage);
+        options.parseArgument(args);
+
+        KBStatistics kbStatistics = new KBStatistics(options);
+
+        assertDoesNotThrow(kbStatistics::calculate);
+
+        File file = new File("statistics.txt");
+        assertTrue(file.exists());
+
+        // read the content from file
+        AtomicReference<String> content = new AtomicReference<>("");
+        assertDoesNotThrow(() -> content.set(String.join("\n", Files.readAllLines(file.toPath()))));
+
+        String expected = """
+                    1
+                    Name: bamboobike.fm4conf
+                    Source: SPLOT
+                    #variables: 11
+                    #constraints: 8
+                    #Choco variables: 26
+                    #Choco constraints: 20
+                    Consistency: true
+                    
+                    CTC ratio: 0.25
+                    #features: 11
+                    #leaf features: 8
+                    #relationships: 6
+                    #constraints: 2
+                    #MANDATORY: 2
+                    #OPTIONAL: 2
+                    #ALTERNATIVE: 1
+                    #OR: 1
+                    #REQUIRES: 1
                     #EXCLUDES: 1""";
         assertEquals(expected, content.get());
     }
@@ -183,6 +226,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.25
                     #features: 11
+                    #leaf features: 8
                     #relationships: 6
                     #constraints: 2
                     #MANDATORY: 2
@@ -202,6 +246,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.25
                     #features: 11
+                    #leaf features: 8
                     #relationships: 6
                     #constraints: 2
                     #MANDATORY: 2
@@ -221,6 +266,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.25
                     #features: 11
+                    #leaf features: 8
                     #relationships: 6
                     #constraints: 2
                     #MANDATORY: 2
@@ -240,6 +286,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.25
                     #features: 11
+                    #leaf features: 8
                     #relationships: 6
                     #constraints: 2
                     #MANDATORY: 2
@@ -259,6 +306,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.3218390804597701
                     #features: 263
+                    #leaf features: 160
                     #relationships: 177
                     #constraints: 84
                     #MANDATORY: 67
@@ -278,6 +326,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.25
                     #features: 11
+                    #leaf features: 8
                     #relationships: 6
                     #constraints: 2
                     #MANDATORY: 2
@@ -297,6 +346,7 @@ class KBStatisticsTest {
                     
                     CTC ratio: 0.4
                     #features: 12
+                    #leaf features: 9
                     #relationships: 6
                     #constraints: 4
                     #MANDATORY: 2
@@ -346,6 +396,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.25
                         #features: 11
+                        #leaf features: 8
                         #relationships: 6
                         #constraints: 2
                         #MANDATORY: 2
@@ -365,6 +416,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.25
                         #features: 11
+                        #leaf features: 8
                         #relationships: 6
                         #constraints: 2
                         #MANDATORY: 2
@@ -384,6 +436,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.25
                         #features: 11
+                        #leaf features: 8
                         #relationships: 6
                         #constraints: 2
                         #MANDATORY: 2
@@ -403,6 +456,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.25
                         #features: 11
+                        #leaf features: 8
                         #relationships: 6
                         #constraints: 2
                         #MANDATORY: 2
@@ -422,6 +476,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.3218390804597701
                         #features: 263
+                        #leaf features: 160
                         #relationships: 177
                         #constraints: 84
                         #MANDATORY: 67
@@ -441,6 +496,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.25
                         #features: 11
+                        #leaf features: 8
                         #relationships: 6
                         #constraints: 2
                         #MANDATORY: 2
@@ -460,6 +516,7 @@ class KBStatisticsTest {
                         
                         CTC ratio: 0.4
                         #features: 12
+                        #leaf features: 9
                         #relationships: 6
                         #constraints: 4
                         #MANDATORY: 2

@@ -202,6 +202,7 @@ public class KBStatistics {
         writer.newLine();
         writer.write("CTC ratio: " + ctc); writer.newLine();
         writer.write("#features: " + fm.getNumOfFeatures()); writer.newLine();
+        writer.write("#leaf features: " + fm.getNumOfLeaf()); writer.newLine();
         writer.write("#relationships: " + fm.getNumOfRelationships()); writer.newLine();
         writer.write("#constraints: " + fm.getNumOfConstraints()); writer.newLine();
         writer.write("#MANDATORY: " + fm.getNumOfRelationships(MandatoryRelationship.class)); writer.newLine();
